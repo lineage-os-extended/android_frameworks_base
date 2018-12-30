@@ -1045,9 +1045,10 @@ public final class PowerManagerService extends SystemService
                 LineageSettings.System.FORCE_SHOW_NAVBAR,
                 0, UserHandle.USER_CURRENT) == 1;
 
-        mProximityWakeEnabled = LineageSettings.System.getInt(resolver,
+        mProximityWakeEnabled = (Settings.System.getIntForUser(resolver,
                 LineageSettings.System.PROXIMITY_ON_WAKE,
-                mProximityWakeEnabledByDefaultConfig ? 1 : 0) == 1;
+	        mProximityWakeEnabledByDefaultConfig ? 1 : 0,
+                UserHandle.USER_CURRENT) != 0);
 
         mDirty |= DIRTY_SETTINGS;
     }
