@@ -27580,5 +27580,10 @@ public class ActivityManagerService extends IActivityManager.Stub
             return mCutoutFullscreenController.shouldForceCutoutFullscreen(packageName);
         }
     }
+	
+     Context getContext() {
+        return mContext;
+    }
+
 
 }
