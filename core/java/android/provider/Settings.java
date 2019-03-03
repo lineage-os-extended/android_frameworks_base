@@ -4360,6 +4360,13 @@ public final class Settings {
         }
 
         /**
+         * Whether to display one hand mode option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_ONEHAND = "powermenu_onehand";
+
+        /**
          * These are all public system settings
          *
          * All settings in {@link SETTINGS_TO_BACKUP} array *must* have a non-null validator,

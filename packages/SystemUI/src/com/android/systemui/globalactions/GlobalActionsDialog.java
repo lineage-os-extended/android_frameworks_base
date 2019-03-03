@@ -128,6 +128,11 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private static final String TAG = "GlobalActionsDialog";
 
     private static final boolean SHOW_SILENT_TOGGLE = false;
+    private static final String GLOBAL_ACTION_KEY_ONEHAND = "onehand";
+    private static final String EXTRA_ALIGNMENT_STATE = "alignment_state";
+    private static final String ACTION_ONEHAND_TRIGGER_EVENT =
+            "com.android.server.wm.onehand.intent.action.ONEHAND_TRIGGER_EVENT";
+
 
     private final Context mContext;
     private final GlobalActionsManager mWindowManagerFuncs;
@@ -157,6 +162,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private final boolean mShowSilentToggle;
     private final EmergencyAffordanceManager mEmergencyAffordanceManager;
     private final ScreenshotHelper mScreenshotHelper;
+    private boolean mOneHandEnabled = false;
 
     // Power menu customizations
     private String[] mDefaultMenuActions;
@@ -434,6 +440,11 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 if (mSeparatedEmergencyButtonEnabled
                         && !mEmergencyAffordanceManager.needsEmergencyAffordance()) {
                     mItems.add(new EmergencyDialerAction());
+                }
+            } else if (GLOBAL_ACTION_KEY_ONEHAND.equals(actionKey)) {
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.POWERMENU_ONEHAND, 1) != 0) {
+                    mItems.add(getOneHandAction());
                 }
             } else {
                 Log.e(TAG, "Invalid global action key " + actionKey);
@@ -906,6 +917,30 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             @Override
             public boolean showDuringKeyguard() {
                 return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return false;
+            }
+        };
+    }
+
+    private Action getOneHandAction() {
+        return new SinglePressAction(com.android.systemui.R.drawable.ic_onehand_mode,
+                R.string.onehand_mode_label) {
+
+            @Override
+            public void onPress() {
+                Intent intent = new Intent();
+                intent.setAction(ACTION_ONEHAND_TRIGGER_EVENT);
+                intent.putExtra(EXTRA_ALIGNMENT_STATE, 1);
+                mContext.sendBroadcast(intent);
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return false;
             }
 
             @Override
