@@ -1,5 +1,5 @@
 <!--
-     Copyright (C) 2018 The LineageOS Project
+     Copyright (C) 2018-2019 The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -33,4 +33,7 @@
     <integer name="hardware_ui_align">53</integer>
     <string name="device_doze_proximity_sensor">android.sensor.proximity</string>
     <bool name="device_doze_proximity_sensor_inverted">false</bool>
+
+    <!-- Color of the FOD view -->
+    <color name="config_fodColor">#00ff00</color>
 </resources>
