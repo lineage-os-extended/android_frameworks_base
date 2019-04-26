@@ -31,4 +31,6 @@
          * Right -> 53 (Gravity.TOP | Gravity.RIGHT)
     -->
     <integer name="hardware_ui_align">53</integer>
+    <string name="device_doze_proximity_sensor">android.sensor.proximity</string>
+    <bool name="device_doze_proximity_sensor_inverted">false</bool>
 </resources>

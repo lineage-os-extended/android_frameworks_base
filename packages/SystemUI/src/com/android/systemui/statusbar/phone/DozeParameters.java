@@ -151,6 +151,15 @@ public class DozeParameters implements TunerService.Tunable {
         return getInt("doze.pickup.vibration.threshold", R.integer.doze_pickup_vibration_threshold);
     }
 
+    public String getDeviceDozeProximitySensor() {
+        return getString("android.sensor.proximity", R.string.device_doze_proximity_sensor);
+    }
+
+    public boolean getDeviceDozeProximitySensorInverted() {
+        return getBoolean("doze.proximity.sensor.inverted",
+                R.bool.device_doze_proximity_sensor_inverted);
+    }
+
     /**
      * For how long a wallpaper can be visible in AoD before it fades aways.
      * @return duration in millis.
