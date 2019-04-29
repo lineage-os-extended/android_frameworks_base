@@ -4160,6 +4160,12 @@ public final class Settings {
 	
 	        /** @hide */
 	        public static final Validator LOCKSCREEN_BATTERY_INFO_VALIDATOR = BOOLEAN_VALIDATOR;
+			
+		 /**
+         * Force full screen for devices with cutout
+         * @hide
+         */
+        public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
       
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
