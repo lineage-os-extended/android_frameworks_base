@@ -2302,8 +2302,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     context, minHorizontal, maxHorizontal, minVertical, maxVertical, maxRadius);
         }
 		
-         mSwipeToScreenshot = new SwipeToScreenshotListener(
-                context, new SwipeToScreenshotListener.Callbacks() {
+         mSwipeToScreenshot = new SwipeToScreenshotListener(context, new SwipeToScreenshotListener.Callbacks() {
             @Override
             public void onSwipeThreeFinger() {
            mHandler.post(mScreenshotRunnable);

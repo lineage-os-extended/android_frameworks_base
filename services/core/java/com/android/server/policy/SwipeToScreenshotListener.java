@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2019 The PixelExperience Project
- *               2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +19,8 @@ package com.android.server.policy;
 import android.content.Context;
 import android.os.SystemProperties;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.WindowManagerPolicyConstants.PointerEventListener;
 
@@ -32,7 +31,6 @@ public class SwipeToScreenshotListener implements PointerEventListener {
     private static final int THREE_GESTURE_STATE_DETECTED_FALSE = 2;
     private static final int THREE_GESTURE_STATE_DETECTED_TRUE = 3;
     private static final int THREE_GESTURE_STATE_NO_DETECT = 4;
-    private final Callbacks mCallbacks;
     private boolean mBootCompleted;
     private Context mContext;
     private boolean mDeviceProvisioned = false;
@@ -41,7 +39,8 @@ public class SwipeToScreenshotListener implements PointerEventListener {
     private int mThreeGestureState = THREE_GESTURE_STATE_NONE;
     private int mThreeGestureThreshold;
     private int mThreshold;
-    private DisplayMetrics mDisplayMetrics;
+    private final Callbacks mCallbacks;
+    DisplayMetrics mDisplayMetrics;
 
     public SwipeToScreenshotListener(Context context, Callbacks callbacks) {
         mPointerIds = new int[3];
@@ -61,7 +60,7 @@ public class SwipeToScreenshotListener implements PointerEventListener {
         }
         if (!mDeviceProvisioned) {
             mDeviceProvisioned = Settings.Global.getInt(mContext.getContentResolver(),
-                    Settings.Global.DEVICE_PROVISIONED, 0) != 0;
+                Settings.Global.DEVICE_PROVISIONED, 0) != 0;
             return;
         }
         if (event.getAction() == 0) {
@@ -104,13 +103,13 @@ public class SwipeToScreenshotListener implements PointerEventListener {
     }
 
     private void changeThreeGestureState(int state) {
-        if (mThreeGestureState != state) {
+        if (mThreeGestureState != state){
             mThreeGestureState = state;
             boolean shouldEnableProp = mThreeGestureState == THREE_GESTURE_STATE_DETECTED_TRUE ||
-                    mThreeGestureState == THREE_GESTURE_STATE_DETECTING;
+                mThreeGestureState == THREE_GESTURE_STATE_DETECTING;
             try {
                 SystemProperties.set("sys.android.screenshot", shouldEnableProp ? "true" : "false");
-            } catch (Exception e) {
+            } catch(Exception e) {
                 Log.e(TAG, "Exception when setprop", e);
             }
         }
