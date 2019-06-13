@@ -1078,7 +1078,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         void observe() {
             // Observe all users' changes
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.END_BUTTON_BEHAVIOR), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
@@ -2306,8 +2306,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 context, new SwipeToScreenshotListener.Callbacks() {
             @Override
             public void onSwipeThreeFinger() {
-                mHandler.post(mScreenshotRunnable);
+                if (!mPocketLockShowing){
+                    mHandler.post(mScreenshotRunnable);
             }
+		 }
         });
  
         mHandler = new PolicyHandler();

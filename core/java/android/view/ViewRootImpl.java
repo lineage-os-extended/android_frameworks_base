@@ -5108,8 +5108,7 @@ public final class ViewRootImpl implements ViewParent,
         private int processPointerEvent(QueuedInputEvent q) {
             final MotionEvent event = (MotionEvent)q.mEvent;
 
-            if (event.getPointerCount() == 3 &&
-                    SystemProperties.getBoolean("sys.android.screenshot", false)) {
+             if (event.getPointerCount() == 3 && isSwipeToScreenshotGestureActive()) {
                 event.setAction(MotionEvent.ACTION_CANCEL);
             }
 
@@ -8538,4 +8537,13 @@ public final class ViewRootImpl implements ViewParent,
             return false;
         }
     }
+        private boolean isSwipeToScreenshotGestureActive() {
+        try {
+            return ActivityManager.getService().isSwipeToScreenshotGestureActive();
+        } catch (RemoteException e) {
+            return false;
+        }
+    }
 }
+
+
