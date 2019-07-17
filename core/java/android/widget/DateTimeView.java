@@ -533,4 +533,3 @@ public class DateTimeView extends TextView {
         Instant instant = time.toInstant(zoneId.getRules().getOffset(time));
         return instant.toEpochMilli();
     }
-}
