@@ -3021,16 +3021,6 @@ public final class Settings {
         private static final Validator WIFI_STATIC_GATEWAY_VALIDATOR = LENIENT_IP_ADDRESS_VALIDATOR;
 
         /**
-        * Whether to display the 4g or lte network icon in the statusbar
-        * @hide
-        */
-        public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
-
-        /** @hide */
-        private static final Validator SHOW_LTE_FOURGEE_VALIDATOR = BOOLEAN_VALIDATOR;
-
-		
-        /**
          * If using static IP, the net mask.
          * <p>
          * Example: "255.255.255.0"
@@ -4249,7 +4239,6 @@ public final class Settings {
             HAPTIC_FEEDBACK_INTENSITY,
             DISPLAY_COLOR_MODE,
             NOTIFICATION_LIGHT_PULSE,
-			SHOW_LTE_FOURGEE,
         };
 
         /**
@@ -4366,7 +4355,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
 			PRIVATE_SETTINGS.add(SWIPE_TO_SCREENSHOT);
 			PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
-			PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
         }
 
         /**
@@ -4459,8 +4447,7 @@ public final class Settings {
             VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES,
                     ACCELEROMETER_ROTATION_ANGLES_VALIDATOR);
 			VALIDATORS.put(SWIPE_TO_SCREENSHOT, SWIPE_TO_SCREENSHOT_VALIDATOR);	
-            VALIDATORS.put(LOCKSCREEN_BATTERY_INFO, LOCKSCREEN_BATTERY_INFO_VALIDATOR);	
-            VALIDATORS.put(SHOW_LTE_FOURGEE,SHOW_LTE_FOURGEE_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_BATTERY_INFO, LOCKSCREEN_BATTERY_INFO_VALIDATOR);			
         }
 
         /**
