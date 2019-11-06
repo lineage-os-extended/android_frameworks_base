@@ -5719,9 +5719,9 @@ public class ActivityManagerService extends IActivityManager.Stub
         int ret = mActivityStartController.startActivities(caller, -1, 0,
                 UserHandle.USER_NULL, callingPackage, intents, resolvedTypes, resultTo,
                 SafeActivityOptions.fromBundle(bOptions), userId, reason,
-                null /* originatingPendingIntent */);
-        return ret;
-    }
+		null /* originatingPendingIntent */);
+	return ret;
+   }
 
     @Override
     public void reportActivityFullyDrawn(IBinder token, boolean restoredFromBundle) {
